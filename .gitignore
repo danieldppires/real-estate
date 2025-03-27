@@ -1,0 +1,25 @@
+# Ignorar node_modules
+api/node_modules/
+client/node_modules/
+
+# Ignorar builds e dependências geradas
+api/dist
+client/dist
+api/build
+client/build
+
+# Ignorar .env
+api/.env
+client/.env
+
+# Ignorar logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar cache e dependências do sistema
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
