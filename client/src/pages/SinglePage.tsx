@@ -9,13 +9,15 @@ import bed from "../assets/bed.png";
 import bath from "../assets/bath.png";
 import school from "../assets/school.png";
 import { singlePostData, userData } from "../lib/data";
+import Slider from "../components/Slider";
+import Map from "../components/Map";
 
 export interface Post {
 	id: number;
 	title: string;
 	price: number;
 	images: string[];
-	bedRooms: number;
+	bedroom: number;
 	bathroom: number;
 	size: number;
 	latitude: number;
@@ -33,35 +35,9 @@ const SinglePage = () => {
 	const user = userData;
 
 	return (
-		<div className="flex lg:gap-12 xl:gap-16 mt-8 sm:mt-0 mb-12">
+		<div className="flex flex-col sm:flex-row lg:gap-12 xl:gap-16 mt-8 sm:mt-0 mb-12">
 			<div className="flex-3 flex flex-col justify-start">
-				<div className="flex gap-4 mb-12">
-					<div className="flex-3">
-						<img
-							src={item.images[0]}
-							alt=""
-							className="rounded-lg object-cover aspect-3/2"
-						/>
-					</div>
-
-					<div className="flex-1 flex flex-col gap-4">
-						<img
-							src={item.images[1]}
-							alt=""
-							className="rounded-lg object-cover aspect-video"
-						/>
-						<img
-							src={item.images[2]}
-							alt=""
-							className="rounded-lg object-cover aspect-video"
-						/>
-						<img
-							src={item.images[3]}
-							alt=""
-							className="rounded-lg object-cover aspect-video"
-						/>
-					</div>
-				</div>
+				<Slider images={item.images} />
 
 				<div>
 					<div className="flex justify-between mb-12">
@@ -86,22 +62,11 @@ const SinglePage = () => {
 						</div>
 					</div>
 
-					<div className="text-sm text-stone-600">
-						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, nemo
-						laudantium est, harum voluptates commodi, at totam perspiciatis
-						voluptas magnam iusto molestiae debitis. Nisi cumque quo quae harum.
-						Laborum, veniam. Lorem ipsum dolor sit, amet consectetur adipisicing
-						elit. Enim, nemo laudantium est, harum voluptates commodi, at totam
-						perspiciatis voluptas magnam iusto molestiae debitis. Nisi cumque
-						quo quae harum. Lorem ipsum dolor sit, amet consectetur adipisicing
-						elit. Enim, nemo laudantium est, harum voluptates commodi, at totam
-						perspiciatis voluptas magnam iusto molestiae debitis. Nisi cumque
-						quo quae harum. Laborum, veniam.
-					</div>
+					<div className="text-sm text-stone-600">{item.description}</div>
 				</div>
 			</div>
 
-			<div className="flex-2 bg-stone-100 hidden lg:block h-[calc(100vh-100px)]">
+			<div className="flex-2 bg-stone-100 h-[calc(100vh-100px)] mt-12 sm:mt-0 pt-4 sm:pt-0">
 				<div className="flex flex-col gap-4 px-5">
 					<h4 className="font-semibold">General</h4>
 					<div className="bg-white py-4 px-2 rounded-lg flex flex-col">
@@ -138,15 +103,17 @@ const SinglePage = () => {
 					<div className="flex justify-between gap-4 text-sm">
 						<div className="bg-white p-2 rounded-lg flex gap-2">
 							<img src={size} alt="" className="w-5 h-5" />
-							80sqm (861sqft)
+							80sqm ({item.size}sqft)
 						</div>
 
 						<div className="bg-white p-2 rounded-lg flex gap-2">
-							<img src={bed} alt="" className="w-5 h-5" />2 bed
+							<img src={bed} alt="" className="w-5 h-5" />
+							{item.bedroom} bed
 						</div>
 
 						<div className="bg-white p-2 rounded-lg flex gap-2">
-							<img src={bath} alt="" className="w-5 h-5" />1 bathroom
+							<img src={bath} alt="" className="w-5 h-5" />
+							{item.bathroom} bathroom
 						</div>
 					</div>
 
@@ -156,7 +123,7 @@ const SinglePage = () => {
 							<img src={school} alt="" className="w-5 h-5" />
 							<div className="leading-0">
 								<h5 className="text-sm font-semibold">School</h5>
-								<span className="text-xs">250m away</span>
+								<span className="text-xs">{item.school}</span>
 							</div>
 						</div>
 
@@ -164,7 +131,7 @@ const SinglePage = () => {
 							<img src={pet} alt="" className="w-5 h-5" />
 							<div className="leading-0">
 								<h5 className="text-sm font-semibold">Bus Stop</h5>
-								<span className="text-xs">100m away</span>
+								<span className="text-xs">{item.bus}</span>
 							</div>
 						</div>
 
@@ -172,15 +139,17 @@ const SinglePage = () => {
 							<img src={fees} alt="" className="w-5 h-5" />
 							<div className="leading-0">
 								<h5 className="text-sm font-semibold">Restaurant</h5>
-								<span className="text-xs">200m away</span>
+								<span className="text-xs">{item.restaurant}</span>
 							</div>
 						</div>
 					</div>
 
 					<h4 className="font-semibold">Location</h4>
-					<div>Mapa</div>
+					<div className="w-full h-48">
+						<Map items={[item]} />
+					</div>
 
-					<div className="flex justify-between">
+					<div className="flex justify-between mb-12">
 						<button
 							className="bg-white border border-stone-300 text-sm flex gap-2 items-center 
 						justify-center py-3 px-8 hover:bg-amber-200 cursor-pointer"

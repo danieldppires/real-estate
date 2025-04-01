@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export interface ResultType {
 	id: number;
 	title: string;
-	img: string;
+	images: string[];
 	bedroom: number;
 	bathroom: number;
 	price: number;
@@ -27,7 +27,7 @@ const ResultItem = ({ result }: Props) => {
 			<div className="flex-2">
 				<Link to={`/${result.id}`}>
 					<img
-						src={result.img || ""}
+						src={result.images[0] || ""}
 						alt=""
 						className="aspect-3/2 object-cover rounded-xl"
 					/>
