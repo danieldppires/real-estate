@@ -5,18 +5,20 @@ import { results } from "../lib/data";
 
 const ListPage = () => {
 	return (
-		<div className="flex lg:gap-12 xl:gap-16 mt-8 sm:mt-0">
-			<div className="flex-3 flex flex-col justify-start">
-				<Filter />
+		<div className="flex h-full mt-8 sm:mt-0">
+			<div className="flex-3 overflow-y-auto [&::-webkit-scrollbar]:hidden">
+				<div className="flex flex-col justify-start pr-12">
+					<Filter />
 
-				<div>
-					{results.map((res) => (
-						<ResultItem key={res.id} result={res} />
-					))}
+					<div>
+						{results.map((res) => (
+							<ResultItem key={res.id} result={res} />
+						))}
+					</div>
 				</div>
 			</div>
 
-			<div className="flex-2 bg-stone-100 hidden lg:block h-[calc(100vh-100px)]">
+			<div className="flex-2 bg-stone-100 hidden lg:block h-full">
 				<Map items={results} />
 			</div>
 		</div>

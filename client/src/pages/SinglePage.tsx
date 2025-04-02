@@ -35,38 +35,40 @@ const SinglePage = () => {
 	const user = userData;
 
 	return (
-		<div className="flex flex-col sm:flex-row lg:gap-12 xl:gap-16 mt-8 sm:mt-0 mb-12">
-			<div className="flex-3 flex flex-col justify-start">
-				<Slider images={item.images} />
+		<div className="flex h-full flex-col sm:flex-row mt-8 sm:mt-0 mb-12">
+			<div className="flex-3 overflow-y-auto [&::-webkit-scrollbar]:hidden">
+				<div className="flex flex-col justify-start pr-12 mb-12">
+					<Slider images={item.images} />
 
-				<div>
-					<div className="flex justify-between mb-12">
-						<div className="flex flex-col justify-between">
-							<h1 className="text-3xl">{item.title}</h1>
-							<p className="text-stone-400 text-xs flex gap-1 items-center">
-								<img src={pin} alt="" className="w-3.5 h-3.5" />
-								{item.address}
-							</p>
-							<span className="text-lg font-light bg-amber-200 w-max p-1">
-								$ {item.price}
-							</span>
+					<div>
+						<div className="flex justify-between mb-12">
+							<div className="flex flex-col justify-between">
+								<h1 className="text-3xl">{item.title}</h1>
+								<p className="text-stone-400 text-xs flex gap-1 items-center">
+									<img src={pin} alt="" className="w-3.5 h-3.5" />
+									{item.address}
+								</p>
+								<span className="text-lg font-light bg-amber-200 w-max p-1">
+									$ {item.price}
+								</span>
+							</div>
+
+							<div className="flex flex-col items-center gap-2 bg-amber-100 py-6 px-10 rounded-lg">
+								<img
+									src={user.img}
+									alt=""
+									className="w-10 h-10 object-cover rounded-full"
+								/>
+								<span className="text-sm font-semibold">{user.name}</span>
+							</div>
 						</div>
 
-						<div className="flex flex-col items-center gap-2 bg-amber-100 py-6 px-10 rounded-lg">
-							<img
-								src={user.img}
-								alt=""
-								className="w-10 h-10 object-cover rounded-full"
-							/>
-							<span className="text-sm font-semibold">{user.name}</span>
-						</div>
+						<div className="text-sm text-stone-600">{item.description}</div>
 					</div>
-
-					<div className="text-sm text-stone-600">{item.description}</div>
 				</div>
 			</div>
 
-			<div className="flex-2 bg-stone-100 h-[calc(100vh-100px)] mt-12 sm:mt-0 pt-4 sm:pt-0">
+			<div className="flex-2 bg-stone-100 h-[calc(100vh-100px)] mt-12 sm:mt-0 pt-4 sm:pt-0 overflow-y-auto [&::-webkit-scrollbar]:hidden">
 				<div className="flex flex-col gap-4 px-5">
 					<h4 className="font-semibold">General</h4>
 					<div className="bg-white py-4 px-2 rounded-lg flex flex-col">

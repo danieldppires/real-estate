@@ -24,7 +24,7 @@ interface Props {
 const ResultItem = ({ result }: Props) => {
 	return (
 		<div className="flex gap-3 mb-12">
-			<div className="flex-2">
+			<div className="hidden sm:block flex-2">
 				<Link to={`/${result.id}`}>
 					<img
 						src={result.images[0] || ""}
